@@ -43,6 +43,10 @@ class EquipoController extends Controller
 
     public function destroy(Equipo $equipo): RedirectResponse
     {
+        if ($equipo->mantenimientos()->exists()) {
+            return to_route('equipos.index')->with('error', 'No se puede eliminar un equipo con mantenimientos asociados. Elimina primero sus mantenimientos.');
+        }
+
         $equipo->delete();
 
         return to_route('equipos.index')->with('success', 'Equipo eliminado correctamente.');

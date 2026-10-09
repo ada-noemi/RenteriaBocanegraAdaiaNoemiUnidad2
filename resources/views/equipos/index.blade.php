@@ -7,6 +7,9 @@
         <p class="text-sm text-slate-600">Consulta y administra los equipos y su información general.</p>
         <button type="button" data-open-modal="equipo-create" class="rounded-lg bg-teal-700 px-5 py-3 text-sm font-medium text-white hover:bg-teal-800">Registrar equipo</button>
     </div>
+    @if (session('error'))
+        <div role="alert" class="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-800">{{ session('error') }}</div>
+    @endif
     @if (session('success'))
         <div role="status" class="rounded-lg border border-teal-200 bg-teal-50 p-4 text-sm text-teal-800">{{ session('success') }}</div>
     @endif
