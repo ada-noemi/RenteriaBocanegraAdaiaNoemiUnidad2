@@ -4,12 +4,19 @@ namespace Tests\Feature;
 
 use App\Models\Equipo;
 use App\Models\Mantenimiento;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class DashboardTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->actingAs(User::factory()->create());
+    }
 
     private function equipo(string $codigo, string $estado = 'Activo'): Equipo
     {

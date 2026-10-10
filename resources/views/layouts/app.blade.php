@@ -23,9 +23,20 @@
         </aside>
 
         <div class="min-w-0 flex-1 md:ml-64">
-            <header class="border-b border-slate-200 bg-white px-6 py-5 lg:px-10">
+            <header class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 bg-white px-6 py-5 lg:px-10">
+                <div>
                 <p class="text-sm text-slate-500">Sistema Web de Gestión de Mantenimiento</p>
                 <h1 class="mt-1 text-2xl font-semibold tracking-tight">@yield('title')</h1>
+                </div>
+                @auth
+                    <div class="flex flex-wrap items-center gap-3 text-sm">
+                        <span class="max-w-64 break-words font-medium">{{ auth()->user()->name }}</span>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="rounded-lg border border-slate-300 px-4 py-2 font-medium hover:bg-slate-50">Cerrar sesión</button>
+                        </form>
+                    </div>
+                @endauth
             </header>
             <main id="contenido" class="mx-auto max-w-7xl space-y-6 p-6 lg:p-10">
                 @yield('content')
